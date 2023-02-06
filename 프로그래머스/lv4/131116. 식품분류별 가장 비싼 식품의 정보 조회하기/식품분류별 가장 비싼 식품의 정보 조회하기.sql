@@ -1,0 +1,15 @@
+-- 코드를 입력하세요
+SELECT     A.CATEGORY, A.PRICE, A.PRODUCT_NAME
+FROM       FOOD_PRODUCT A
+INNER JOIN (SELECT   CATEGORY, MAX(PRICE) AS PRICE
+            FROM     FOOD_PRODUCT
+            GROUP BY CATEGORY
+           ) B
+ON         A.CATEGORY = B.CATEGORY
+AND        A.PRICE = B.PRICE
+WHERE      1=1
+AND        (A.CATEGORY = '과자'
+OR          A.CATEGORY = '국'
+OR          A.CATEGORY = '김치'
+OR          A.CATEGORY = '식용유')
+ORDER BY   A.PRICE DESC
